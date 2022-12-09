@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=JetBrains Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Code Pro">
+    <style>
+        :root {
+             
+             
+            --color-purple-light: #c478f7;
+            --color-purple-dark: #964599;
+            --color-burple-light: #84a4fe;
+            --color-burple-dark: #837cfb;
+            --color-pink-light: #fd75b0;
+            --color-pink-dark: #ea5779;
+            --color-yellow-light: #fcb53e;
+            --color-yellow-dark: #f57936;
+            --color-orange-light: #fd8841;
+            --color-orange-dark: #de453c;
+            --color-green-light: #35e8af;
+            --color-green-dark: #2bcbba;
+            --color-blue-light: #54d6fe;
+            --color-blue-dark: #369deb;
+
+             
+            --neumorphism-light-light: #ffffff;
+            --neumorphism-light-base: #ecf0f3;
+            --neumorphism-light-dark: #d1d9e6;
+            --neumorphism-light-darker: #97a7c3;
+
+             
+            --neumorphism-dark-light: #4d4d4d;
+            --neumorphism-dark-base: #353535;
+            --neumorphism-dark-dark: #1c1c1c;
+
+             
+            --font-family-jetbrains-mono: 'JetBrains Mono', monospace;
+            --font-family-source-code-pro: 'Source Code Pro', monospace;
+            --font-family-source-code-pro-medium: 'Source Code Pro Medium', monospace;
+            --font-family-source-code-pro-semibold: 'Source Code Pro SemiBold', monospace;
+            --font-family-source-code-pro-bold: 'Source Code Pro Bold', monospace;
+
+             
+            --border-radius: 8px;
+        }
+
+        .neumorphism-dark-gradient {
+            background: linear-gradient(30deg, var(--neumorphism-light-dark), var(--neumorphism-light-darker));
+        }
+        .green-gradient {
+            background: linear-gradient(var(--color-green-light), var(--color-green-dark));
+        }
+        .blue-gradient {
+            background: linear-gradient(330deg, var(--color-blue-light), var(--color-blue-dark));
+        }
+        .burple-gradient {
+            background: linear-gradient(var(--color-burple-light), var(--color-burple-dark));
+        }
+        .orange-gradient {
+            background: linear-gradient(var(--color-orange-light), var(--color-orange-dark));
+        }
+
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-jetbrains-mono);
+            text-transform: uppercase;
+            margin: 8px;
+        }
+
+        p, span, div {
+            font-family: var(--font-family-source-code-pro);
+            font-size: 14px;
+        }
+        p {
+            margin: 8px 0;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        h5 {
+            font-size: 14px;
+        }
+
+        h6 {
+            font-size: 12px;
+        }
+
+         
+        body {
+            height: 100vh;
+            background: white;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .contact-us {
+            min-height: 80%;
+            display: grid;
+            align-items: center;
+            grid-template-columns: auto;
+        }
+
+        .contact-us-body {
+            background: var(--neumorphism-light-base);
+            border-radius: var(--border-radius);
+            min-width: 300px;
+            max-width: 400px;
+            margin: 10px auto;
+        }
+
+        .logo > svg {
+            width: 250px;
+            margin: 20px auto;
+        }
+
+        header {
+            padding: 8px;
+        }
+
+        main {
+            margin: 15px;
+        }
+
+        .input-groups {
+            text-align: left;
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+        .input-groups .label {
+            min-width: 80px;
+            padding: 5px 15px;
+        }
+        .input-groups .value {
+            padding: 5px 15px;
+        }
+        .message {
+            text-align: left;
+            padding: 5px 15px;
+        }
+
+        footer {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            background: var(--neumorphism-light-dark);
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            padding: 16px;
+            text-align: left;
+        }
+
+        footer .logo > svg {
+            height: 20px;
+            width: 80px;
+            margin: 8px;
+        }
+        footer .links {
+            border-left: 1px solid var(--neumorphism-light-light);
+        }
+        footer .links a {
+            display: block;
+            margin: 8px;
+            text-decoration: none;
+            color: var(--neumorphism-light-light);
+        }
+
+        .btn {
+            display: inline-block;
+            color: var(--neumorphism-dark-base);
+            padding: 11px 25px;
+            text-transform: uppercase;
+            font-style: italic;
+            border-radius: var(--border-radius);
+            border: none;
+            background: inherit;
+            margin: 20px 0;
+        }
+
+        .btn-out {
+            box-shadow: -5px -5px var(--border-radius) var(--neumorphism-light-light),
+            5px 5px var(--border-radius) var(--neumorphism-light-dark);
+        }
+
+        .btn-blue {
+            border: 1px solid var(--color-blue-dark);
+            color: var(--color-blue-dark);
+        }
+
+         
+         
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: rgba(0, 0, 0, 0.87);
+            }
+
+            .contact-us-body {
+                color: var(--neumorphism-light-base);
+                background: var(--neumorphism-dark-base);
+            }
+
+            .outer-shadow {
+                box-shadow: -5px -5px 8px var(--neumorphism-dark-light),
+                5px 5px 8px var(--neumorphism-dark-dark);
+            }
+
+            .inner-shadow {
+                box-shadow: -5px -5px 8px inset var(--neumorphism-dark-dark),
+                5px 5px 8px inset var(--neumorphism-dark-light);
+            }
+
+            .btn {
+                color: var(--neumorphism-light-base);
+            }
+
+            .btn-out {
+                box-shadow: -5px -5px var(--border-radius) var(--neumorphism-dark-light),
+                5px 5px var(--border-radius) var(--neumorphism-dark-dark);
+            }
+
+            .btn-blue {
+                border: 1px solid var(--color-blue-light);
+                color: var(--color-blue-light);
+            }
+
+            .neumorphism-dark-gradient {
+                background: linear-gradient(30deg, var(--neumorphism-light-darker), var(--neumorphism-dark-light));
+            }
+
+            svg {
+                fill: var(--neumorphism-light-dark)
+            }
+        }
+
+         
+        @media screen and (min-width: 450px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            h4 {
+                font-size: 18px;
+            }
+
+            h5 {
+                font-size: 16px;
+            }
+
+            h6 {
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 11px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="contact-us">
+    <div class="contact-us-body">
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="330" height="64" viewBox="0 0 330 64">
+                <defs>
+                    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#54d6fe"/>
+                        <stop offset="1" stop-color="#369deb"/>
+                    </linearGradient>
+                </defs>
+                <g id="dottics-logo" transform="translate(0 0)">
+                    <path id="Path_1" data-name="Path 1" d="M16.436,51.616a14.073,14.073,0,0,1-10.858-4.49Q1.44,42.636,1.44,35.045V21.738q0-7.673,4.1-12.163a14.042,14.042,0,0,1,10.9-4.49,13.224,13.224,0,0,1,9.137,3.1,10.6,10.6,0,0,1,3.483,8.327L27.335,13.82h1.557l-.082-9.8V-8.792h6.474V50.8H28.81V42.881H27.089l1.967-2.694a10.566,10.566,0,0,1-3.483,8.367A13.334,13.334,0,0,1,16.436,51.616Zm2.049-5.633A9.8,9.8,0,0,0,26.065,43q2.745-2.98,2.745-8.286V21.983q0-5.306-2.745-8.286a9.8,9.8,0,0,0-7.58-2.98,10.105,10.105,0,0,0-7.7,2.939Q8,16.6,8,21.983V34.718q0,5.388,2.786,8.327A10.105,10.105,0,0,0,18.485,45.983ZM121.9,50.8q-5.654,0-8.768-2.98t-3.114-8.449V11.779H97.236V5.9H110.02V-6.751h6.556V5.9h18.11v5.878h-18.11V39.371q0,5.551,5.327,5.551h11.964V50.8Zm49.168,0q-5.654,0-8.768-2.98t-3.114-8.449V11.779H146.4V5.9h12.784V-6.751h6.556V5.9h18.11v5.878h-18.11V39.371q0,5.551,5.327,5.551h11.964V50.8Zm26.879,0V44.922H214.01V11.779H200V5.9h20.569v39.02h15.242V50.8Zm18.6-53.143a6,6,0,0,1-4.056-1.306,4.491,4.491,0,0,1-1.516-3.592A4.84,4.84,0,0,1,212.494-11a5.774,5.774,0,0,1,4.056-1.388A5.774,5.774,0,0,1,220.607-11a4.84,4.84,0,0,1,1.516,3.755,4.521,4.521,0,0,1-1.516,3.551A5.883,5.883,0,0,1,216.551-2.343Zm48.185,53.959a19.661,19.661,0,0,1-9.178-2.041,14.658,14.658,0,0,1-6.105-5.837,17.867,17.867,0,0,1-2.172-9.02V21.983a17.867,17.867,0,0,1,2.172-9.02,14.658,14.658,0,0,1,6.105-5.837,19.661,19.661,0,0,1,9.178-2.041q7.7,0,12.374,4.163T281.944,20.6H275.47a9.625,9.625,0,0,0-2.991-7.184,11.192,11.192,0,0,0-7.744-2.531,10.851,10.851,0,0,0-7.949,2.9q-2.95,2.9-2.95,8.2V34.718q0,5.224,2.95,8.163a10.765,10.765,0,0,0,7.949,2.939,11.078,11.078,0,0,0,7.744-2.571,9.666,9.666,0,0,0,2.991-7.143h6.474q-.164,7.184-4.835,11.347T264.735,51.616Zm47.283-.082a19.279,19.279,0,0,1-7.785-1.469,12.9,12.9,0,0,1-5.327-4.122,12.6,12.6,0,0,1-2.376-6.163H303a6.872,6.872,0,0,0,2.909,4.327,10.439,10.439,0,0,0,6.105,1.633h4.015q4.343,0,6.6-1.918a6.365,6.365,0,0,0,2.253-5.1,6.464,6.464,0,0,0-1.967-4.9,10.249,10.249,0,0,0-5.654-2.449l-6.8-1.061q-6.392-1.061-9.629-4.082t-3.237-8.49q0-5.959,3.892-9.265t11.268-3.306h3.2q6.392,0,10.284,3.02a12.4,12.4,0,0,1,4.712,8.163h-6.556a6.026,6.026,0,0,0-2.663-3.918,10.147,10.147,0,0,0-5.777-1.469h-3.2q-4.343,0-6.474,1.755a6.135,6.135,0,0,0-2.131,5.02,5.474,5.474,0,0,0,1.8,4.449,11.184,11.184,0,0,0,5.49,2.082l6.72,1.061q6.72,1.061,10,4.2t3.278,8.776a12.378,12.378,0,0,1-3.934,9.673q-3.933,3.551-11.473,3.551Z" transform="translate(-1.44 12.384)"/>
+                    <g id="logo-circle-1o4" transform="translate(44.06 20)">
+                        <path id="Mask" d="M19.833,0V19.833H0A20.153,20.153,0,0,1,19.833,0Z" transform="translate(0 2.333)"/>
+                        <path id="Mask-2" data-name="Mask" d="M-17,0V19.833H2.833A20.153,20.153,0,0,0-17,0Z" transform="translate(39.167)" fill="url(#linear-gradient)"/>
+                        <path id="Mask-3" data-name="Mask" d="M19.833,2.833V-17H0A20.153,20.153,0,0,0,19.833,2.833Z" transform="translate(0 39.167)"/>
+                        <path id="Mask-4" data-name="Mask" d="M19.833,0V19.833H0A20.153,20.153,0,0,1,19.833,0Z" transform="translate(39.667 42) rotate(180)"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <header class="blue-gradient">
+            <h2>Contact Us</h2>
+            <h4>budget application</h4>
+        </header>
+        <main>
+            <p>Thank you for reaching out to dottics!</p>
+            <p>
+                We appreciate the time taken to fill out the form. We consider
+                your time to be valuable therefore we will try to get back to
+                you as soon as possible.
+            </p>
+            <h5>Your Details</h5>
+            <div class="input-groups">
+                <div class="label">Name</div>
+                <div class="value"></div>
+                <div class="label">Email</div>
+                <div class="value"></div>
+            </div>
+            <h5>Your Message</h5>
+            <p class="message"></p>
+        </main>
+        <footer class="neumorphism-dark-gradient">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="330" height="64" viewBox="0 0 330 64">
+                    <defs>
+                        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                            <stop offset="0" stop-color="#54d6fe"/>
+                            <stop offset="1" stop-color="#369deb"/>
+                        </linearGradient>
+                    </defs>
+                    <g id="dottics-logo" transform="translate(0 0)">
+                        <path id="Path_1" data-name="Path 1" d="M16.436,51.616a14.073,14.073,0,0,1-10.858-4.49Q1.44,42.636,1.44,35.045V21.738q0-7.673,4.1-12.163a14.042,14.042,0,0,1,10.9-4.49,13.224,13.224,0,0,1,9.137,3.1,10.6,10.6,0,0,1,3.483,8.327L27.335,13.82h1.557l-.082-9.8V-8.792h6.474V50.8H28.81V42.881H27.089l1.967-2.694a10.566,10.566,0,0,1-3.483,8.367A13.334,13.334,0,0,1,16.436,51.616Zm2.049-5.633A9.8,9.8,0,0,0,26.065,43q2.745-2.98,2.745-8.286V21.983q0-5.306-2.745-8.286a9.8,9.8,0,0,0-7.58-2.98,10.105,10.105,0,0,0-7.7,2.939Q8,16.6,8,21.983V34.718q0,5.388,2.786,8.327A10.105,10.105,0,0,0,18.485,45.983ZM121.9,50.8q-5.654,0-8.768-2.98t-3.114-8.449V11.779H97.236V5.9H110.02V-6.751h6.556V5.9h18.11v5.878h-18.11V39.371q0,5.551,5.327,5.551h11.964V50.8Zm49.168,0q-5.654,0-8.768-2.98t-3.114-8.449V11.779H146.4V5.9h12.784V-6.751h6.556V5.9h18.11v5.878h-18.11V39.371q0,5.551,5.327,5.551h11.964V50.8Zm26.879,0V44.922H214.01V11.779H200V5.9h20.569v39.02h15.242V50.8Zm18.6-53.143a6,6,0,0,1-4.056-1.306,4.491,4.491,0,0,1-1.516-3.592A4.84,4.84,0,0,1,212.494-11a5.774,5.774,0,0,1,4.056-1.388A5.774,5.774,0,0,1,220.607-11a4.84,4.84,0,0,1,1.516,3.755,4.521,4.521,0,0,1-1.516,3.551A5.883,5.883,0,0,1,216.551-2.343Zm48.185,53.959a19.661,19.661,0,0,1-9.178-2.041,14.658,14.658,0,0,1-6.105-5.837,17.867,17.867,0,0,1-2.172-9.02V21.983a17.867,17.867,0,0,1,2.172-9.02,14.658,14.658,0,0,1,6.105-5.837,19.661,19.661,0,0,1,9.178-2.041q7.7,0,12.374,4.163T281.944,20.6H275.47a9.625,9.625,0,0,0-2.991-7.184,11.192,11.192,0,0,0-7.744-2.531,10.851,10.851,0,0,0-7.949,2.9q-2.95,2.9-2.95,8.2V34.718q0,5.224,2.95,8.163a10.765,10.765,0,0,0,7.949,2.939,11.078,11.078,0,0,0,7.744-2.571,9.666,9.666,0,0,0,2.991-7.143h6.474q-.164,7.184-4.835,11.347T264.735,51.616Zm47.283-.082a19.279,19.279,0,0,1-7.785-1.469,12.9,12.9,0,0,1-5.327-4.122,12.6,12.6,0,0,1-2.376-6.163H303a6.872,6.872,0,0,0,2.909,4.327,10.439,10.439,0,0,0,6.105,1.633h4.015q4.343,0,6.6-1.918a6.365,6.365,0,0,0,2.253-5.1,6.464,6.464,0,0,0-1.967-4.9,10.249,10.249,0,0,0-5.654-2.449l-6.8-1.061q-6.392-1.061-9.629-4.082t-3.237-8.49q0-5.959,3.892-9.265t11.268-3.306h3.2q6.392,0,10.284,3.02a12.4,12.4,0,0,1,4.712,8.163h-6.556a6.026,6.026,0,0,0-2.663-3.918,10.147,10.147,0,0,0-5.777-1.469h-3.2q-4.343,0-6.474,1.755a6.135,6.135,0,0,0-2.131,5.02,5.474,5.474,0,0,0,1.8,4.449,11.184,11.184,0,0,0,5.49,2.082l6.72,1.061q6.72,1.061,10,4.2t3.278,8.776a12.378,12.378,0,0,1-3.934,9.673q-3.933,3.551-11.473,3.551Z" transform="translate(-1.44 12.384)"/>
+                        <g id="logo-circle-1o4" transform="translate(44.06 20)">
+                            <path id="Mask" d="M19.833,0V19.833H0A20.153,20.153,0,0,1,19.833,0Z" transform="translate(0 2.333)"/>
+                            <path id="Mask-2" data-name="Mask" d="M-17,0V19.833H2.833A20.153,20.153,0,0,0-17,0Z" transform="translate(39.167)" fill="url(#linear-gradient)"/>
+                            <path id="Mask-3" data-name="Mask" d="M19.833,2.833V-17H0A20.153,20.153,0,0,0,19.833,2.833Z" transform="translate(0 39.167)"/>
+                            <path id="Mask-4" data-name="Mask" d="M19.833,0V19.833H0A20.153,20.153,0,0,1,19.833,0Z" transform="translate(39.667 42) rotate(180)"/>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="links">
+                <a href="/">Budget App Home Page</a>
+                <a href="/contact-us">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
+</html>

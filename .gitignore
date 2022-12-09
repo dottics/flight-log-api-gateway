@@ -1,0 +1,12 @@
+# IDE
+.idea
+.fleet
+.vscode
+
+# Environment
+.env
+
+# Mac Finder
+.DS_Store
+
+

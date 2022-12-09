@@ -1,0 +1,12 @@
+github.com/dottics/dutil v0.1.0 h1:HRfdSsSNLWeV/QHNboQIl9xSbthc37HlZWX5stHd9+8=
+github.com/dottics/dutil v0.1.0/go.mod h1:UqhesIdv+aHE5UbQKNTmN3lqg8hcZfuAW+IeP6lgNUY=
+github.com/dottics/emailserv v1.2.1 h1:29BH07CHmvN/gsdhwSIuVs91EshhY5vDDLOzn5eK5S0=
+github.com/dottics/emailserv v1.2.1/go.mod h1:uKA+WvZVN+He41Tl5gcKvTSDWWOYgPoLU4P77MphyIE=
+github.com/dottics/securityserv v0.3.0 h1:/og9OIBRdnmFTas+qzN5TUrIYb66+FwxY0SdvjofMA4=
+github.com/dottics/securityserv v0.3.0/go.mod h1:TKV6jnPRLfMb4Q6lmsI4VKGkoRHApn2nHaK4lm355F0=
+github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
+github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
+github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/johannesscr/micro v0.1.1 h1:iY/sOXqj/BPKGEsSIgTfbkoW4AiUdpIQgx6fcDWwTRM=
+github.com/johannesscr/micro v0.1.1/go.mod h1:6iueg8ffr1CTH5sS30RKZvtYhY/3hXZRFAUGgiANUL4=
