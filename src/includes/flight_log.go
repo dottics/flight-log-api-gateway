@@ -10,12 +10,14 @@ import (
 // service.
 func GetFlightLogs(token string, UserUUID uuid.UUID) (flightserv.FlightLogs, dutil.Error) {
 	ms := flightserv.NewService(token)
-	xl, e := ms.GetFlightLogs(UserUUID)
-	return xl, e
+	xlogs, e := ms.GetFlightLogs(UserUUID)
+	return xlogs, e
 }
 
 // GetFlightLog fetches a specific flight log of a user from the flight log
 // service.
-func GetFlightLog(UserUUID, UUID uuid.UUID) (flightserv.FlightLog, dutil.Error) {
-	return flightserv.FlightLog{}, nil
+func GetFlightLog(token string, UserUUID, UUID uuid.UUID) (flightserv.FlightLog, dutil.Error) {
+	ms := flightserv.NewService(token)
+	log, e := ms.GetFlightLog(UserUUID, UUID)
+	return log, e
 }
