@@ -39,7 +39,7 @@ func (s *Server) routes() {
 	s.Router.HandleFunc("/reset-password", s.prop(handler.ResetPassword)).Methods("OPTIONS", "POST")
 	s.Router.HandleFunc("/contact-us", s.prop(handler.ContactUs)).Methods("OPTIONS", "POST")
 	// aircraft types
-	//s.Router.HandleFunc("/aircraft-type", s.prop(handler.AircraftTypes)).Methods("OPTIONS", "GET")
+	s.Router.HandleFunc("/aircraft-type", s.prop(handler.AircraftTypes)).Methods("OPTIONS", "GET")
 	//// CRUD flight log
 	//s.Router.HandleFunc("/flight-log", s.prop(handler.FlightLog)).Methods("OPTIONS", "GET")
 	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.FlightLogs)).Methods("OPTIONS", "GET")

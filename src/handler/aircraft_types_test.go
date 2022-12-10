@@ -72,7 +72,7 @@ func TestGetAircraftTypes(t *testing.T) {
 			req := httptest.NewRequest("GET", "/aircraft-type", nil)
 			rec := httptest.NewRecorder()
 
-			GetAircraftTypes(rec, req)
+			AircraftTypes(rec, req)
 			res, xb := microtest.ReadRecorder(rec)
 			if res.StatusCode != tc.E.status {
 				t.Errorf("expected %d got %d", tc.E.status, res.StatusCode)

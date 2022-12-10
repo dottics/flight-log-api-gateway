@@ -7,9 +7,9 @@ import (
 	"net/http"
 )
 
-// GetAircraftTypes is the handler that manages fetching the aircraft types that
+// AircraftTypes is the handler that manages fetching the aircraft types that
 // are available to the app.
-func GetAircraftTypes(w http.ResponseWriter, r *http.Request) {
+func AircraftTypes(w http.ResponseWriter, r *http.Request) {
 	// get token
 	xt, e := includes.GetAircraftTypes(r.Header.Get("X-Token"))
 	if e != nil {
