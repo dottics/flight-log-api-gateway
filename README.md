@@ -1,15 +1,31 @@
 # Flight Log API Gateway
 
-## Build
+## Exports
 ```bash
 export VERSION=0.0.0
-docker build -f Dockerfile.local -t johannesscr/flight-log-api-gateway:$VERSION-local .
+export IP=172.18.2.3
+export PORT=5030
+export NAME=flight-log-api-gateway
+export IMAGE_NAME=flight-log-api-gateway
+```
+
+## Build
+```bash
+
+docker build -f Dockerfile.local -t flight-log-api-gateway:$VERSION .
 docker build -f Dockerfile.development -t johannesscr/flight-log-api-gateway:$VERSION .
+```
+
+## Local
+### Flight Log API Gateway
+```bash
+# Flight Log API Gateway
+docker run --name flight-log-api-gateway --net dottics-network --ip $IP -d -p $PORT:$PORT flight-log-api-gateway:$VERSION
 ```
 
 ## Development
 ### Flight Log API Gateway
 ```bash
 # Flight Log API Gateway
-docker run --name flight-log-api-gateway --net dottics-network --ip 172.18.2.3 -d -p 5030:5030 johannesscr/flight-log-api-gateway:$VERSION
+docker run --name flight-log-api-gateway --net dottics-network --ip $IP -d -p $PORT:$PORT johannesscr/flight-log-api-gateway:$VERSION
 ```
