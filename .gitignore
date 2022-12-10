@@ -9,4 +9,8 @@
 # Mac Finder
 .DS_Store
 
+# Generated files
+documents/*.html
+documents/*.pdf
+
 
