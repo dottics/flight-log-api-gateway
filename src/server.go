@@ -38,17 +38,14 @@ func (s *Server) routes() {
 	s.Router.HandleFunc("/forgot-password", s.prop(handler.ForgotPassword)).Methods("OPTIONS", "POST")
 	s.Router.HandleFunc("/reset-password", s.prop(handler.ResetPassword)).Methods("OPTIONS", "POST")
 	s.Router.HandleFunc("/contact-us", s.prop(handler.ContactUs)).Methods("OPTIONS", "POST")
-	// Budget
-	//s.Router.HandleFunc("/budget", s.prop(handler.Budgets)).Methods("OPTIONS", "GET")
-	//s.Router.HandleFunc("/budget/-", s.prop(handler.Budget)).Methods("OPTIONS", "GET")
-	//s.Router.HandleFunc("/budget/-/group", s.prop(handler.Groups)).Methods("OPTIONS", "GET")
-	//s.Router.HandleFunc("/budget/group/-/item", s.prop(handler.GetItems)).Methods("OPTIONS", "GET")
-	//s.Router.HandleFunc("/budget/group/item/-/event", s.prop(handler.GetEvents)).Methods("OPTIONS", "GET")
-	//s.Router.HandleFunc("/calc/item/month-total", s.prop(handler.ItemMonthlyTotal)).Methods("OPTIONS", "POST")
-	//// CRUD event
-	//s.Router.HandleFunc("/event", s.prop(handler.CreateEvent)).Methods("OPTIONS", "POST")
-	//s.Router.HandleFunc("/event/-", s.prop(handler.UpdateEvent)).Methods("OPTIONS", "PUT")
-	//s.Router.HandleFunc("/event/-", s.prop(handler.DeleteEvent)).Methods("OPTIONS", "DELETE")
+	// aircraft types
+	//s.Router.HandleFunc("/aircraft-type", s.prop(handler.AircraftTypes)).Methods("OPTIONS", "GET")
+	//// CRUD flight log
+	//s.Router.HandleFunc("/flight-log", s.prop(handler.FlightLog)).Methods("OPTIONS", "GET")
+	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.FlightLogs)).Methods("OPTIONS", "GET")
+	//s.Router.HandleFunc("/flight-log", s.prop(handler.CreateFlightLog)).Methods("OPTIONS", "POST")
+	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.UpdateFlightLog)).Methods("OPTIONS", "PUT")
+	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.DeleteFlightLog)).Methods("OPTIONS", "DELETE")
 }
 
 // prop propagates the http.ResponseWriter and http.Request to the handler
