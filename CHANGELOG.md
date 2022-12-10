@@ -5,6 +5,11 @@ The format is based on [Keep a changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.2.0] - 2022-12-10
+### Added
+- The function `GetFlightLog` to get a specific flight log of a user.
+- The function `GetFlightLogs` to get all of a user's flight logs.
+
 ## [0.1.0] - 2022-12-10
 ### Added
 - The function `GetAircraftTypes` to interact with the microservice to fetch all
