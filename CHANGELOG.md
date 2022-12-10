@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - The function `GetAircraftTypes` to interact with the microservice to fetch all
   possible aircraft types.
+- The endpoint `GET /aircraft-types` to get all the aircraft types from the
+  microservice.
 
 ## [0.0.0] - 2022-12-10
 ### Added
