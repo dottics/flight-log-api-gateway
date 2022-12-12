@@ -2,7 +2,7 @@
 
 ## Exports
 ```bash
-export VERSION=0.1.0
+export VERSION=0.2.0
 export IP=172.18.2.3
 export PORT=5030
 export NAME=flight-log-api-gateway

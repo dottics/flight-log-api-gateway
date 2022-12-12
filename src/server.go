@@ -41,8 +41,8 @@ func (s *Server) routes() {
 	// aircraft types
 	s.Router.HandleFunc("/aircraft-type", s.prop(handler.AircraftTypes)).Methods("OPTIONS", "GET")
 	//// CRUD flight log
-	//s.Router.HandleFunc("/flight-log", s.prop(handler.FlightLog)).Methods("OPTIONS", "GET")
-	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.FlightLogs)).Methods("OPTIONS", "GET")
+	s.Router.HandleFunc("/flight-log", s.prop(handler.FlightLog)).Methods("OPTIONS", "GET")
+	s.Router.HandleFunc("/flight-log/-", s.prop(handler.FlightLogs)).Methods("OPTIONS", "GET")
 	//s.Router.HandleFunc("/flight-log", s.prop(handler.CreateFlightLog)).Methods("OPTIONS", "POST")
 	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.UpdateFlightLog)).Methods("OPTIONS", "PUT")
 	//s.Router.HandleFunc("/flight-log/-", s.prop(handler.DeleteFlightLog)).Methods("OPTIONS", "DELETE")
