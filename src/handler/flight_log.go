@@ -81,7 +81,8 @@ func FlightLogs(w http.ResponseWriter, r *http.Request) {
 		FlightLogs flightserv.FlightLogs `json:"flightLogs"`
 	}
 	res := dutil.Resp{
-		Status: 200,
+		Status:  200,
+		Message: "flight logs found",
 		Data: Data{
 			FlightLogs: xLog,
 		},
