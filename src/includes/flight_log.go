@@ -29,3 +29,10 @@ func CreateFlightLog(token string, log flightserv.FlightLog) (flightserv.FlightL
 	log, e := ms.CreateFlightLog(log)
 	return log, e
 }
+
+// UpdateFlightLog exchanges with the flight log service to update a flight log.
+func UpdateFlightLog(token string, log flightserv.FlightLog) (flightserv.FlightLog, dutil.Error) {
+	ms := flightserv.NewService(token)
+	log, e := ms.UpdateFlightLog(log)
+	return log, e
+}
