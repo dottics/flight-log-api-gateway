@@ -21,3 +21,11 @@ func GetFlightLog(token string, UserUUID, UUID uuid.UUID) (flightserv.FlightLog,
 	log, e := ms.GetFlightLog(UserUUID, UUID)
 	return log, e
 }
+
+// CreateFlightLog exchanges with the flight log service to create a new flight
+// log.
+func CreateFlightLog(token string, log flightserv.FlightLog) (flightserv.FlightLog, dutil.Error) {
+	ms := flightserv.NewService(token)
+	log, e := ms.CreateFlightLog(log)
+	return log, e
+}

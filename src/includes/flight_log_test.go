@@ -183,3 +183,91 @@ func TestGetFlightLog(t *testing.T) {
 		})
 	}
 }
+
+func TestCreateFlightLog(t *testing.T) {
+	type E struct {
+		log flightserv.FlightLog
+		e   dutil.Error
+	}
+	tt := []struct {
+		name string
+		log  flightserv.FlightLog
+		ex   *microtest.Exchange
+		E
+	}{
+		{
+			name: "403 Forbidden",
+			log: flightserv.FlightLog{
+				UUID:     uuid.MustParse("76b1841b-d6c5-4696-8fbe-b062056ccd76"),
+				UserUUID: uuid.MustParse("b8530d7d-6678-432f-a9be-6b5847c3ef2f"),
+			},
+			ex: &microtest.Exchange{
+				Response: microtest.Response{
+					Status: 403,
+					Body: `{
+						"message":"Forbidden",
+						"errors":{
+							"permission": ["Please ensure you have permission"]
+						}
+					}`,
+				},
+			},
+			E: E{
+				log: flightserv.FlightLog{},
+				e: &dutil.Err{
+					Status: 403,
+					Errors: map[string][]string{
+						"permission": {"Please ensure you have permission"},
+					},
+				},
+			},
+		},
+		{
+			name: "201 Create flight log successful",
+			log: flightserv.FlightLog{
+				UserUUID: uuid.MustParse("b8530d7d-6678-432f-a9be-6b5847c3ef2f"),
+			},
+			ex: &microtest.Exchange{
+				Response: microtest.Response{
+					Status: 201,
+					Body: `{
+						"message": "flight log created",
+						"data": {
+							"flightLog": {
+								"uuid": "76b1841b-d6c5-4696-8fbe-b062056ccd76",
+								"userUuid": "b8530d7d-6678-432f-a9be-6b5847c3ef2f"
+							}
+						}
+					}`,
+				},
+			},
+			E: E{
+				log: flightserv.FlightLog{
+					UUID:     uuid.MustParse("76b1841b-d6c5-4696-8fbe-b062056ccd76"),
+					UserUUID: uuid.MustParse("b8530d7d-6678-432f-a9be-6b5847c3ef2f"),
+				},
+				e: nil,
+			},
+		},
+	}
+
+	ms := microtest.NewMockServer("FLIGHT_SERVICE_SCHEME", "FLIGHT_SERVICE_HOST")
+	defer ms.Server.Close()
+
+	for i, tc := range tt {
+		name := fmt.Sprintf("%d %s", i, tc.name)
+
+		t.Run(name, func(t *testing.T) {
+			ms.Append(tc.ex)
+
+			log, e := CreateFlightLog("test-token", tc.log)
+			if !dutil.ErrorEqual(tc.E.e, e) {
+				t.Errorf("expected error %v got %v", tc.E.e, e)
+			}
+			if log != tc.E.log {
+				t.Errorf("expected flight log %v got %v", tc.E.log, log)
+			}
+		})
+	}
+
+}

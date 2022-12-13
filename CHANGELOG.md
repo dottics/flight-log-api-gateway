@@ -5,6 +5,12 @@ The format is based on [Keep a changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.3.0] - 2022-12-13
+### Added
+- The function `CreateFlightLog` to interact with the microservice to create a
+  new flight log in the flight log service.
+- The `POST /flight-log` endpoint to handle the creation of a new flight log.
+
 ## [0.2.0] - 2022-12-10
 ### Added
 - The function `GetFlightLog` to get a specific flight log of a user.
