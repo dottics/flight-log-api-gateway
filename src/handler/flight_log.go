@@ -149,3 +149,39 @@ func UpdateFlightLog(w http.ResponseWriter, r *http.Request) {
 	}
 	res.Respond(w, r)
 }
+
+func DeleteFlightLog(w http.ResponseWriter, r *http.Request) {
+	token := r.Header.Get("X-Token")
+	userUUID, err := uuid.Parse(r.URL.Query().Get("userUuid"))
+	if err != nil {
+		e := &dutil.Err{
+			Status: 400,
+			Errors: map[string][]string{
+				"userUuid": {err.Error()},
+			},
+		}
+		Error(w, r, e)
+		return
+	}
+	UUID, err := uuid.Parse(r.URL.Query().Get("uuid"))
+	if err != nil {
+		e := &dutil.Err{
+			Status: 400,
+			Errors: map[string][]string{
+				"userUuid": {err.Error()},
+			},
+		}
+		Error(w, r, e)
+	}
+	e := includes.DeleteFlightLog(token, userUUID, UUID)
+	if e != nil {
+		Error(w, r, e)
+		return
+	}
+
+	res := dutil.Resp{
+		Status:  200,
+		Message: "flight log deleted",
+	}
+	res.Respond(w, r)
+}

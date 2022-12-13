@@ -328,10 +328,93 @@ func TestUpdateFlightLog(t *testing.T) {
 
 		t.Run(name, func(t *testing.T) {
 			ms.Append(tc.ex)
-			req := microtest.NewRequest("POST", "/flight-log", nil, nil, tc.body)
+			req := microtest.NewRequest("PUT", "/flight-log/-", nil, nil, tc.body)
 			rec := httptest.NewRecorder()
 			UpdateFlightLog(rec, req)
 
+			res, xb := microtest.ReadRecorder(rec)
+			if res.StatusCode != tc.E.status {
+				t.Errorf("expected status code %d got %d", tc.E.status, res.StatusCode)
+			}
+
+			b := strings.TrimSpace(string(xb))
+			if b != tc.E.body {
+				t.Errorf("expected body '%s' got '%s'", tc.E.body, b)
+			}
+		})
+	}
+}
+
+func TestDeleteFlightLog(t *testing.T) {
+	type E struct {
+		status int
+		body   string
+	}
+	tt := []struct {
+		name string
+		qs   map[string]string
+		ex   *microtest.Exchange
+		E
+	}{
+		{
+			name: "403 Forbidden",
+			qs: map[string]string{
+				"uuid":     "b8530d7d-6678-432f-a9be-6b5847c3ef2f",
+				"userUuid": "a6ca1dba-9f15-44de-8b1d-1f6ee7bf92d8",
+			},
+			ex: &microtest.Exchange{
+				Response: microtest.Response{
+					Status: 403,
+					Body: `{
+						"message":"Forbidden",
+						"errors":{
+							"permission": ["Please ensure you have permission"]
+						}
+					}`,
+				},
+			},
+			E: E{
+				status: 403,
+				body:   `{"message":"Forbidden","data":null,"errors":{"permission":["Please ensure you have permission"]}}`,
+			},
+		},
+		{
+			name: "200 Delete flight log successful",
+			qs: map[string]string{
+				"uuid":     "78386229-9562-46cb-9441-afa9ce42fd70",
+				"userUuid": "9403f65d-8fe1-4c87-bd49-49c051f6c4bb",
+			},
+			ex: &microtest.Exchange{
+				Response: microtest.Response{
+					Status: 200,
+					Body: `{
+						"message": "flight log deleted"
+					}`,
+				},
+			},
+			E: E{
+				status: 200,
+				body:   `{"message":"flight log deleted","data":null,"errors":null}`,
+			},
+		},
+	}
+
+	ms := microtest.NewMockServer("FLIGHT_SERVICE_SCHEME", "FLIGHT_SERVICE_HOST")
+	defer ms.Server.Close()
+
+	for i, tc := range tt {
+		name := fmt.Sprintf("%d %s", i, tc.name)
+
+		t.Run(name, func(t *testing.T) {
+			ms.Append(tc.ex)
+			req := microtest.NewRequest("DELETE", "/flight-log/-", tc.qs, nil, nil)
+			rec := httptest.NewRecorder()
+			DeleteFlightLog(rec, req)
+
+			query := fmt.Sprintf("UUID=%s&userUUID=%s", tc.qs["uuid"], tc.qs["userUuid"])
+			if tc.ex.Request.URL.RawQuery != query {
+				t.Errorf("expected query parameters %s got %s", query, tc.ex.Request.URL.RawQuery)
+			}
 			res, xb := microtest.ReadRecorder(rec)
 			if res.StatusCode != tc.E.status {
 				t.Errorf("expected status code %d got %d", tc.E.status, res.StatusCode)
