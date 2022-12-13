@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - The function `GetFlightLog` to get a specific flight log of a user.
 - The function `GetFlightLogs` to get all of a user's flight logs.
-- The `GET /flihgt-log/-` endpoint handle the exchange to get a specific flight
+- The `GET /flight-log/-` endpoint handle the exchange to get a specific flight
   log for a user.
 - The `GET /flight-log` endpoint to handle the exchange to get all of a user's
   flight logs.
