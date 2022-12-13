@@ -272,7 +272,6 @@ func TestCreateFlightLog(t *testing.T) {
 			}
 		})
 	}
-
 }
 
 func TestUpdateFlightLog(t *testing.T) {
@@ -363,5 +362,81 @@ func TestUpdateFlightLog(t *testing.T) {
 			}
 		})
 	}
+}
 
+func TestDeleteFlightLog(t *testing.T) {
+	type E struct {
+		e dutil.Error
+	}
+	tt := []struct {
+		name     string
+		userUUID uuid.UUID
+		UUID     uuid.UUID
+		ex       *microtest.Exchange
+		E
+	}{
+		{
+			name:     "403 Forbidden",
+			userUUID: uuid.MustParse("b8530d7d-6678-432f-a9be-6b5847c3ef2f"),
+			UUID:     uuid.MustParse("a6ca1dba-9f15-44de-8b1d-1f6ee7bf92d8"),
+			ex: &microtest.Exchange{
+				Response: microtest.Response{
+					Status: 403,
+					Body: `{
+						"message":"Forbidden",
+						"errors":{
+							"permission": ["Please ensure you have permission"]
+						}
+					}`,
+				},
+			},
+			E: E{
+				e: &dutil.Err{
+					Status: 403,
+					Errors: map[string][]string{
+						"permission": {"Please ensure you have permission"},
+					},
+				},
+			},
+		},
+		{
+			name:     "200 delete flight log successful",
+			userUUID: uuid.MustParse("78386229-9562-46cb-9441-afa9ce42fd70"),
+			UUID:     uuid.MustParse("9403f65d-8fe1-4c87-bd49-49c051f6c4bb"),
+			ex: &microtest.Exchange{
+				Response: microtest.Response{
+					Status: 200,
+					Body: `{
+						"message": "flight log deleted"
+					}`,
+				},
+			},
+			E: E{
+				e: nil,
+			},
+		},
+	}
+
+	ms := microtest.NewMockServer("FLIGHT_SERVICE_SCHEME", "FLIGHT_SERVICE_HOST")
+	defer ms.Server.Close()
+
+	for i, tc := range tt {
+		name := fmt.Sprintf("%d %s", i, tc.name)
+
+		t.Run(name, func(t *testing.T) {
+			ms.Append(tc.ex)
+
+			e := DeleteFlightLog("test-token", tc.userUUID, tc.UUID)
+			query := fmt.Sprintf("UUID=%s&userUUID=%s", tc.UUID.String(), tc.userUUID.String())
+			if tc.ex.Request.URL.RawQuery != query {
+				t.Errorf("expected query parameters %s got %s", query, tc.ex.Request.URL.RawQuery)
+			}
+			if tc.ex.Request.Method != "DELETE" {
+				t.Errorf("expected update to be a DELETE request got %s", tc.ex.Request.Method)
+			}
+			if !dutil.ErrorEqual(tc.E.e, e) {
+				t.Errorf("expected error %v got %v", tc.E.e, e)
+			}
+		})
+	}
 }

@@ -36,3 +36,11 @@ func UpdateFlightLog(token string, log flightserv.FlightLog) (flightserv.FlightL
 	log, e := ms.UpdateFlightLog(log)
 	return log, e
 }
+
+// DeleteFlightLog exchanges with the flight log service to delete a user's
+// flight log. And only returns an error if an error occurred.
+func DeleteFlightLog(token string, UserUUID, UUID uuid.UUID) dutil.Error {
+	ms := flightserv.NewService(token)
+	e := ms.DeleteFlightLog(UserUUID, UUID)
+	return e
+}
