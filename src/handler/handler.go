@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"github.com/dottics/dutil"
 	"github.com/dottics/securityserv"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -37,7 +37,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 // Login handles the login of the budget api and  maps to the security service
 func Login(w http.ResponseWriter, r *http.Request) {
 	s := security.NewService("")
-	xb, _ := ioutil.ReadAll(r.Body)
+	xb, _ := io.ReadAll(r.Body)
 	_ = r.Body.Close()
 
 	token, u, xs, e := s.Login(bytes.NewReader(xb))

@@ -89,3 +89,33 @@ func FlightLogs(w http.ResponseWriter, r *http.Request) {
 	}
 	res.Respond(w, r)
 }
+
+// CreateFlightLog is the handler to create a new flight log for the user in the
+// flight log service.
+func CreateFlightLog(w http.ResponseWriter, r *http.Request) {
+	token := r.Header.Get("X-Token")
+	flightLogData := flightserv.FlightLog{}
+	e := dutil.Decode(w, r, &flightLogData)
+	if e != nil {
+		Error(w, r, e)
+		return
+	}
+
+	log, e := includes.CreateFlightLog(token, flightLogData)
+	if e != nil {
+		Error(w, r, e)
+		return
+	}
+
+	type Data struct {
+		FlightLog flightserv.FlightLog `json:"flightLog"`
+	}
+	res := dutil.Resp{
+		Status:  201,
+		Message: "flight log created",
+		Data: Data{
+			FlightLog: log,
+		},
+	}
+	res.Respond(w, r)
+}
